@@ -469,6 +469,96 @@
             transform: scale(1.08) translateY(-5px);
         }
         
+        /* 院士领衔部分 */
+        .academician-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e8f4f8 100%);
+        }
+        
+        .academician-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            max-width: 800px;
+            margin: 50px auto 0;
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            border: 2px solid #e8f4f8;
+        }
+        
+        .academician-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #2874a6;
+            box-shadow: 0 5px 20px rgba(40, 116, 166, 0.3);
+        }
+        
+        .academician-info {
+            text-align: left;
+        }
+        
+        .academician-name {
+            font-size: 2rem;
+            color: #1a5276;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .academician-name a:hover {
+            color: #2874a6;
+        }
+        
+        .academician-title {
+            font-size: 1.3rem;
+            color: #c9a227;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .academician-affiliation {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .academician-link {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #1a5276 0%, #2874a6 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .academician-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(40, 116, 166, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .academician-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 30px;
+            }
+            
+            .academician-info {
+                text-align: center;
+            }
+            
+            .academician-photo {
+                width: 150px;
+                height: 150px;
+            }
+        }
+        
         /* 顾问部分 */
         .advisors-section {
             padding: 80px 0;
@@ -635,7 +725,8 @@
             <li><a href="#principle">技术原理</a></li>
             <li><a href="#hospital">临床应用</a></li>
             <li><a href="#team">项目团队</a></li>
-            <li><a href="#advisors">学术顾问</a></li>
+            <li><a href="#academician">院士领衔</a></li>
+            <li><a href="#advisors">专家顾问</a></li>
         </ul>
     </nav>
 
@@ -891,6 +982,12 @@
                     </div>
                     
                     <div class="team-member">
+                        <img src="刘梓舒.png" alt="刘梓舒" class="member-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>刘</text></svg>'">
+                        <div class="member-name">刘梓舒</div>
+                        <div class="member-role">新闻传播学院</div>
+                    </div>
+                    
+                    <div class="team-member">
                         <img src="吴桐洋.png" alt="吴桐洋" class="member-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>吴</text></svg>'">
                         <div class="member-name">吴桐洋</div>
                         <div class="member-role">艺术学院</div>
@@ -900,11 +997,31 @@
         </div>
     </section>
 
-    <!-- 学术顾问 -->
+    <!-- 院士领衔 -->
+    <section class="academician-section" id="academician">
+        <div class="container">
+            <h2 class="section-title">院士领衔</h2>
+            <p class="section-subtitle">中国科学院院士领衔指导</p>
+            
+            <div class="academician-card">
+                <img src="谭蔚泓.png" alt="谭蔚泓" class="academician-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>谭</text></svg>'">
+                <div class="academician-info">
+                    <h3 class="academician-name">
+                        <a href="https://him.cas.cn/yjs/zsxx/dsxx/bss/202412/t20241218_7502983.html" target="_blank" style="color: #1a5276; text-decoration: none;">谭蔚泓</a>
+                    </h3>
+                    <p class="academician-title">中国科学院院士</p>
+                    <p class="academician-affiliation">中国科学院杭州医学研究所</p>
+                    <a href="https://him.cas.cn/yjs/zsxx/dsxx/bss/202412/t20241218_7502983.html" target="_blank" class="academician-link">查看详情 →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 专家顾问 -->
     <section class="advisors-section" id="advisors">
         <div class="container">
-            <h2 class="section-title">学术顾问</h2>
-            <p class="section-subtitle">为本项目提供专业指导的学术界专家</p>
+            <h2 class="section-title">专家顾问</h2>
+            <p class="section-subtitle">为本项目提供专业指导的学术界和产业界专家</p>
             
             <div class="advisors-grid">
                 <div class="advisor-card">
@@ -928,13 +1045,13 @@
                 </div>
                 
                 <div class="advisor-card">
-                    <img src="朱志.png" alt="朱志" class="advisor-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22rgba(255,255,255,0.2)%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2220%22>朱</text></svg>'">
+                    <img src="皋源.png" alt="皋源" class="advisor-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22rgba(255,255,255,0.2)%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2220%22>皋</text></svg>'">
                     <div class="advisor-name">
-                        <a href="https://chem.xmu.edu.cn/info/1415/1309.htm" target="_blank" style="color: white; text-decoration: none;">朱志</a>
+                        <a href="https://daoshi.shsmu.edu.cn/Pages/TeacherInformationView.aspx?uid=289A370E-2BAA-4CBB-A316-BBB912374BA8&from=s&pId=&tId=721" target="_blank" style="color: white; text-decoration: none;">皋源</a>
                     </div>
-                    <div class="advisor-title">教授、博士生导师</div>
-                    <div class="advisor-affiliation">厦门大学化学化工学院</div>
-                    <a href="https://chem.xmu.edu.cn/info/1415/1309.htm" target="_blank" class="advisor-link">访问课题组</a>
+                    <div class="advisor-title">主任医师、教授</div>
+                    <div class="advisor-affiliation">上海交通大学医学院附属仁济医院</div>
+                    <a href="https://daoshi.shsmu.edu.cn/Pages/TeacherInformationView.aspx?uid=289A370E-2BAA-4CBB-A316-BBB912374BA8&from=s&pId=&tId=721" target="_blank" class="advisor-link">访问课题组</a>
                 </div>
             </div>
         </div>
