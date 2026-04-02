@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FaAST技术 - 快速抗生素药敏检测 | 千菌一Fa团队</title>
+    <title>LightFaAST BioTech - 快速抗生素药敏检测技术</title>
     <meta name="description" content="FaAST技术是基于荧光D-氨基酸代谢标记的快速抗生素药敏检测方法，由厦门大学千菌一Fa本科生团队研发，可在2小时内完成药敏检测，准确率达98%以上。应用于上海交通大学医学院附属仁济医院临床验证。">
     <meta name="keywords" content="FaAST,抗生素药敏,快速检测,厦门大学,千菌一Fa,仁济医院,细菌检测,FDAA,代谢标记">
     <meta name="author" content="千菌一Fa厦门大学本科生创意组团队">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://your-domain.com/">
+    <link rel="canonical" href="https://yushang329.github.io/faast-website/">
     <style>
         * {
             margin: 0;
@@ -16,22 +16,56 @@
             box-sizing: border-box;
         }
         
+        :root {
+            --primary: #00d4ff;
+            --secondary: #0099cc;
+            --accent: #ff6b6b;
+            --dark: #0a0e27;
+            --darker: #050817;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
         body {
-            font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+            font-family: 'Microsoft YaHei', 'PingFang SC', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.8;
-            color: #333;
-            background: #f8f9fa;
+            color: #e0e0e0;
+            background: var(--darker);
+            overflow-x: hidden;
+        }
+        
+        /* 粒子背景画布 */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
         }
         
         /* 导航栏 */
         nav {
-            background: linear-gradient(135deg, #1a5276 0%, #2874a6 100%);
+            background: rgba(10, 14, 39, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        nav.scrolled {
+            background: rgba(10, 14, 39, 0.95);
+            box-shadow: 0 4px 30px rgba(0, 212, 255, 0.1);
         }
         
         nav ul {
@@ -45,79 +79,166 @@
         }
         
         nav li {
-            margin: 0 1.5rem;
+            margin: 0 1.2rem;
         }
         
         nav a {
-            color: white;
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
             font-weight: 500;
-            transition: opacity 0.3s;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
         }
         
         nav a:hover {
-            opacity: 0.8;
+            color: var(--primary);
+        }
+        
+        nav a:hover::after {
+            width: 100%;
         }
         
         /* 首屏横幅 */
         .hero {
-            background: linear-gradient(135deg, #1a5276 0%, #2e86ab 50%, #1a5276 100%);
-            color: white;
-            padding: 150px 20px 100px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
+            padding: 120px 20px 80px;
             position: relative;
             overflow: hidden;
+            background: radial-gradient(ellipse at center, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
         }
         
         .hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></svg>');
-            background-size: 100px 100px;
-            opacity: 0.3;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
         }
         
         .hero-content {
             position: relative;
             z-index: 1;
-            max-width: 900px;
-            margin: 0 auto;
+            max-width: 1000px;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(0, 153, 204, 0.2));
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 50px;
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 0.8s ease;
         }
         
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
             font-weight: 700;
+            background: linear-gradient(135deg, #fff 0%, var(--primary) 50%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.8s ease 0.2s both;
+            text-shadow: 0 0 60px rgba(0, 212, 255, 0.3);
         }
         
         .hero .subtitle {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             margin-bottom: 1.5rem;
-            opacity: 0.95;
+            color: rgba(255, 255, 255, 0.9);
+            animation: fadeInUp 0.8s ease 0.4s both;
         }
         
         .hero .desc {
-            font-size: 1.1rem;
-            opacity: 0.9;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
             max-width: 700px;
-            margin: 0 auto;
+            margin: 0 auto 40px;
+            animation: fadeInUp 0.8s ease 0.6s both;
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 50px;
+            animation: fadeInUp 0.8s ease 0.8s both;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+        
+        .stat-label {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         .logo-container {
-            margin-bottom: 30px;
+            margin-bottom: 40px;
+            animation: fadeInUp 0.8s ease both;
         }
         
         .main-logo {
-            max-width: 280px;
+            max-width: 300px;
             height: auto;
-            filter: drop-shadow(0 4px 15px rgba(0,0,0,0.2));
-            background: rgba(255,255,255,0.95);
-            padding: 20px 30px;
-            border-radius: 15px;
+            background: linear-gradient(135deg, 
+                rgba(26, 82, 118, 0.9) 0%, 
+                rgba(10, 14, 39, 0.95) 50%,
+                rgba(26, 82, 118, 0.85) 100%);
+            padding: 40px 60px;
+            border-radius: 16px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            mix-blend-mode: screen;
+            opacity: 0.95;
         }
         
         /* 通用容器 */
@@ -130,11 +251,15 @@
         /* 章节标题 */
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
-            color: #1a5276;
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, #fff 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 1rem;
             position: relative;
-            padding-bottom: 15px;
+            padding-bottom: 20px;
+            font-weight: 700;
         }
         
         .section-title::after {
@@ -145,357 +270,415 @@
             transform: translateX(-50%);
             width: 80px;
             height: 4px;
-            background: linear-gradient(90deg, #2874a6, #1a5276);
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
             border-radius: 2px;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
         }
         
         .section-subtitle {
             text-align: center;
-            color: #666;
-            margin-bottom: 3rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 4rem;
             font-size: 1.1rem;
         }
         
         /* 技术介绍部分 */
         .tech-intro {
-            padding: 80px 0;
-            background: white;
-        }
-        
-        .intro-grid {
-            display: flex;
-            flex-wrap: nowrap;
-            gap: 25px;
-            overflow-x: auto;
-            padding-bottom: 10px;
-            margin-top: 40px;
-        }
-        
-        .intro-card {
-            background: #f8f9fa;
-            padding: 30px 25px;
-            border-radius: 15px;
-            border-left: 5px solid #2874a6;
-            transition: transform 0.3s, box-shadow 0.3s;
-            flex: 1;
-            min-width: 220px;
-            max-width: 280px;
-        }
-        
-        .intro-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        
-        .intro-card h3 {
-            color: #1a5276;
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .intro-card .icon {
-            font-size: 1.8rem;
-        }
-        
-        .intro-card p {
-            color: #555;
-            line-height: 1.8;
-        }
-        
-        /* 技术原理流程图 */
-        .tech-principle {
-            padding: 80px 0;
-            background: linear-gradient(135deg, #f0f4f8 0%, #e8f4f8 100%);
-        }
-        
-        .principle-steps {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 50px;
-        }
-        
-        .step {
-            flex: 1;
-            min-width: 200px;
-            text-align: center;
-            padding: 30px 20px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            padding: 100px 0;
             position: relative;
         }
         
+        .intro-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-top: 50px;
+        }
+        
+        @media (max-width: 1200px) {
+            .intro-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .intro-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .intro-card {
+            background: var(--card-bg);
+            padding: 40px 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .intro-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .intro-card:hover::before {
+            left: 100%;
+        }
+        
+        .intro-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+        
+        .intro-card h3 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .intro-card .icon {
+            font-size: 2rem;
+            filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.5));
+        }
+        
+        .intro-card p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+        }
+        
+        /* 技术原理部分 */
+        .tech-principle {
+            padding: 100px 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 212, 255, 0.03) 50%, transparent 100%);
+        }
+        
+        .principle-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .principle-text h3 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+        }
+        
+        .principle-text p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+            line-height: 1.9;
+        }
+        
+        .principle-visual {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            position: relative;
+        }
+        
+        .principle-visual::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary), transparent, var(--secondary));
+            border-radius: 22px;
+            z-index: -1;
+            opacity: 0.5;
+        }
+        
+        .flow-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: rgba(0, 212, 255, 0.05);
+            border-radius: 12px;
+            border-left: 3px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .flow-step:hover {
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateX(10px);
+        }
+        
         .step-number {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #2874a6, #1a5276);
-            color: white;
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin: 0 auto 20px;
-        }
-        
-        .step h4 {
-            color: #1a5276;
-            margin-bottom: 10px;
+            color: var(--dark);
+            font-weight: 700;
+            margin-right: 20px;
             font-size: 1.2rem;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
         }
         
-        .step p {
-            color: #666;
-            font-size: 0.95rem;
+        .step-content h4 {
+            color: #fff;
+            margin-bottom: 5px;
         }
         
-        .arrow {
-            font-size: 2rem;
-            color: #2874a6;
+        .step-content p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
         }
         
-        /* 优势对比 */
-        .advantages {
-            padding: 80px 0;
-            background: white;
-        }
-        
-        .compare-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 40px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        
-        .compare-table th {
-            background: linear-gradient(135deg, #2874a6, #1a5276);
-            color: white;
-            padding: 20px;
-            text-align: left;
-            font-weight: 600;
-        }
-        
-        .compare-table td {
-            padding: 18px 20px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .compare-table tr:nth-child(even) {
-            background: #f8f9fa;
-        }
-        
-        .compare-table tr:hover {
-            background: #e8f4f8;
-        }
-        
-        .highlight {
-            color: #27ae60;
-            font-weight: 600;
-        }
-        
-        /* 医院应用部分 */
-        .hospital-app {
-            padding: 80px 0;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e8f4f8 100%);
+        /* 医院合作部分 */
+        .hospital-section {
+            padding: 100px 0;
         }
         
         .hospital-content {
+            background: var(--card-bg);
+            border-radius: 30px;
+            padding: 60px;
+            border: 1px solid rgba(0, 212, 255, 0.1);
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 50px;
             align-items: center;
-            margin-top: 40px;
         }
         
         .hospital-info h3 {
-            color: #1a5276;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 25px;
         }
         
         .hospital-info p {
-            color: #555;
-            margin-bottom: 15px;
-            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+            line-height: 1.9;
         }
         
         .hospital-stats {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            gap: 25px;
             margin-top: 30px;
         }
         
-        .stat-card {
-            background: white;
+        .hospital-stat {
+            background: rgba(0, 212, 255, 0.05);
             padding: 25px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-        }
-        
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #2874a6;
-            display: block;
-        }
-        
-        .stat-label {
-            color: #666;
-            font-size: 0.95rem;
-            margin-top: 5px;
-        }
-        
-        .hospital-logo {
-            background: white;
-            padding: 40px;
             border-radius: 15px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            transition: all 0.3s ease;
         }
         
-        .hospital-logo h4 {
-            color: #1a5276;
-            font-size: 1.8rem;
-            margin-bottom: 10px;
+        .hospital-stat:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.1);
         }
         
-        .hospital-logo p {
-            color: #666;
+        .hospital-stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
         }
         
-        /* 团队成员部分 */
+        .hospital-stat-label {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+        
+        /* 团队部分 */
         .team-section {
-            padding: 80px 0;
-            background: white;
+            padding: 100px 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 212, 255, 0.02) 50%, transparent 100%);
         }
         
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
         }
         
-        .team-member {
-            text-align: center;
-            padding: 25px;
-            background: #f8f9fa;
-            border-radius: 15px;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .team-member:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-        }
-        
-        .member-photo {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 15px;
-            border: 4px solid #2874a6;
-            background: #e8f4f8;
-        }
-        
-        .member-name {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #1a5276;
-            margin-bottom: 5px;
-        }
-        
-        .member-role {
-            color: #666;
-            font-size: 0.9rem;
-        }
-        
-        .leader-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #f39c12, #e67e22);
-            color: white;
-            padding: 3px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            margin-top: 8px;
-        }
-        
-        /* 团队分组样式 */
         .team-group {
             margin-bottom: 50px;
         }
         
         .group-title {
             font-size: 1.4rem;
-            color: #1a5276;
+            color: var(--primary);
             margin-bottom: 25px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #e8f4f8;
             display: flex;
             align-items: center;
             gap: 10px;
         }
         
         .group-icon {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
+            filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.5));
+        }
+        
+        .team-member {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 25px 20px;
+            text-align: center;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .team-member::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .team-member:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.15);
+        }
+        
+        .member-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 3px solid rgba(0, 212, 255, 0.3);
+            transition: all 0.4s ease;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+        }
+        
+        .team-member:hover .member-photo {
+            border-color: var(--primary);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
+            transform: scale(1.05);
+        }
+        
+        .member-name {
+            font-weight: 600;
+            color: #fff;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .member-role {
+            color: var(--primary);
+            font-size: 0.85rem;
         }
         
         .leader-grid {
             display: flex;
             justify-content: center;
-            max-width: 300px;
-            margin: 0 auto;
+            margin-bottom: 40px;
         }
         
         .leader-member {
-            background: linear-gradient(135deg, #fff9e6, #fff3cd);
-            border: 2px solid #f39c12;
-            transform: scale(1.05);
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 153, 204, 0.1));
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            transform: scale(1.1);
         }
         
-        .leader-member:hover {
-            transform: scale(1.08) translateY(-5px);
+        .leader-member .member-photo {
+            width: 120px;
+            height: 120px;
+            border-color: var(--primary);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
+        }
+        
+        .leader-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--dark);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
         }
         
         /* 院士领衔部分 */
         .academician-section {
-            padding: 80px 0;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e8f4f8 100%);
+            padding: 100px 0;
         }
         
         .academician-card {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 50px;
-            max-width: 800px;
+            gap: 60px;
+            max-width: 900px;
             margin: 50px auto 0;
-            background: white;
-            padding: 50px;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            border: 2px solid #e8f4f8;
+            background: var(--card-bg);
+            padding: 60px;
+            border-radius: 30px;
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .academician-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(0, 212, 255, 0.1), transparent 30%);
+            animation: rotate 10s linear infinite;
+        }
+        
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+        
+        .academician-card > * {
+            position: relative;
+            z-index: 1;
         }
         
         .academician-photo {
-            width: 180px;
-            height: 180px;
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid #2874a6;
-            box-shadow: 0 5px 20px rgba(40, 116, 166, 0.3);
+            border: 4px solid var(--primary);
+            box-shadow: 0 0 40px rgba(0, 212, 255, 0.4);
         }
         
         .academician-info {
@@ -503,50 +686,235 @@
         }
         
         .academician-name {
-            font-size: 2rem;
-            color: #1a5276;
-            margin-bottom: 10px;
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
             font-weight: 700;
         }
         
-        .academician-name a:hover {
-            color: #2874a6;
-        }
-        
         .academician-title {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: #c9a227;
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(201, 162, 39, 0.3);
         }
         
         .academician-affiliation {
             font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 25px;
         }
         
         .academician-link {
             display: inline-block;
-            padding: 12px 30px;
-            background: linear-gradient(135deg, #1a5276 0%, #2874a6 100%);
-            color: white;
+            padding: 14px 35px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--dark);
             text-decoration: none;
-            border-radius: 25px;
-            font-weight: 500;
-            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
         }
         
         .academician-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(40, 116, 166, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.5);
         }
         
+        /* 顾问部分 */
+        .advisors-section {
+            padding: 100px 0;
+            background: linear-gradient(180deg, var(--darker) 0%, var(--dark) 100%);
+        }
+        
+        .advisors-section .section-title {
+            background: linear-gradient(135deg, #fff 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .advisors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+            margin-top: 50px;
+        }
+        
+        .advisor-card {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .advisor-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 212, 255, 0.15), transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        
+        .advisor-card:hover::after {
+            opacity: 1;
+        }
+        
+        .advisor-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.15);
+        }
+        
+        .advisor-photo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 25px;
+            border: 3px solid rgba(0, 212, 255, 0.3);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
+            transition: all 0.4s ease;
+        }
+        
+        .advisor-card:hover .advisor-photo {
+            border-color: var(--primary);
+            box-shadow: 0 0 40px rgba(0, 212, 255, 0.4);
+        }
+        
+        .advisor-name {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .advisor-name a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .advisor-name a:hover {
+            color: var(--primary);
+        }
+        
+        .advisor-title {
+            color: var(--primary);
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+        
+        .advisor-affiliation {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+        
+        .advisor-link {
+            display: inline-block;
+            padding: 10px 25px;
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .advisor-link:hover {
+            background: var(--primary);
+            color: var(--dark);
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
+        }
+        
+        /* 页脚 */
+        footer {
+            background: var(--dark);
+            padding: 60px 0 30px;
+            text-align: center;
+            border-top: 1px solid rgba(0, 212, 255, 0.1);
+        }
+        
+        .footer-logo-content {
+            margin-bottom: 25px;
+        }
+        
+        .footer-logo-img {
+            max-width: 200px;
+            background: linear-gradient(135deg, 
+                rgba(26, 82, 118, 0.8) 0%, 
+                rgba(10, 14, 39, 0.9) 100%);
+            padding: 25px 40px;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            mix-blend-mode: screen;
+            opacity: 0.9;
+        }
+        
+        footer p {
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 10px;
+        }
+        
+        footer p:last-child {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 212, 255, 0.1);
+            color: rgba(255, 255, 255, 0.4);
+        }
+        
+        /* 滚动显示动画 */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* 响应式设计 */
         @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .principle-content,
+            .hospital-content {
+                grid-template-columns: 1fr;
+            }
+            
             .academician-card {
                 flex-direction: column;
                 text-align: center;
-                padding: 30px;
+                padding: 40px 30px;
             }
             
             .academician-info {
@@ -557,168 +925,39 @@
                 width: 150px;
                 height: 150px;
             }
-        }
-        
-        /* 顾问部分 */
-        .advisors-section {
-            padding: 80px 0;
-            background: linear-gradient(135deg, #1a5276 0%, #2874a6 100%);
-            color: white;
-        }
-        
-        .advisors-section .section-title {
-            color: white;
-        }
-        
-        .advisors-section .section-title::after {
-            background: rgba(255,255,255,0.5);
-        }
-        
-        .advisors-section .section-subtitle {
-            color: rgba(255,255,255,0.8);
-        }
-        
-        .advisors-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 50px;
-        }
-        
-        .advisor-card {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            padding: 35px;
-            border-radius: 15px;
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: transform 0.3s, background 0.3s;
-        }
-        
-        .advisor-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255,255,255,0.15);
-        }
-        
-        .advisor-photo {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 20px;
-            border: 4px solid rgba(255,255,255,0.5);
-            background: rgba(255,255,255,0.2);
-        }
-        
-        .advisor-name {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-        
-        .advisor-title {
-            font-size: 1rem;
-            opacity: 0.9;
-            margin-bottom: 15px;
-        }
-        
-        .advisor-affiliation {
-            font-size: 0.9rem;
-            opacity: 0.8;
-            margin-bottom: 20px;
-        }
-        
-        .advisor-link {
-            display: inline-block;
-            color: white;
-            text-decoration: none;
-            padding: 10px 25px;
-            border: 2px solid rgba(255,255,255,0.5);
-            border-radius: 25px;
-            transition: all 0.3s;
-        }
-        
-        .advisor-link:hover {
-            background: white;
-            color: #1a5276;
-        }
-        
-        /* 页脚 */
-        footer {
-            background: #1a1a2e;
-            color: white;
-            padding: 50px 0 30px;
-            text-align: center;
-        }
-        
-        footer p {
-            opacity: 0.8;
-            margin-bottom: 10px;
-        }
-        
-        .footer-logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-        
-        .footer-logo-content {
-            margin-bottom: 25px;
-        }
-        
-        .footer-logo-img {
-            max-width: 200px;
-            height: auto;
-            background: rgba(255,255,255,0.95);
-            padding: 15px 25px;
-            border-radius: 10px;
-        }
-        
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.2rem;
-            }
             
-            .hero .subtitle {
-                font-size: 1.1rem;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
+            nav ul {
+                gap: 10px;
             }
             
             nav li {
-                margin: 0.5rem;
+                margin: 0 0.8rem;
             }
-            
-            .hospital-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .principle-steps {
-                flex-direction: column;
-            }
-            
-            .arrow {
-                transform: rotate(90deg);
-            }
-            
-            .intro-grid {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .intro-card {
-                min-width: 280px;
-                max-width: 100%;
-            }
+        }
+        
+        /* 光标效果 */
+        .cursor-glow {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.15), transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: opacity 0.3s ease;
         }
     </style>
 </head>
 <body>
+    <!-- 粒子背景画布 -->
+    <canvas id="particles-canvas"></canvas>
+    
+    <!-- 光标光效 -->
+    <div class="cursor-glow" id="cursor-glow"></div>
+    
     <!-- 导航栏 -->
-    <nav>
+    <nav id="navbar">
         <ul>
             <li><a href="#home">首页</a></li>
             <li><a href="#tech">技术介绍</a></li>
@@ -736,37 +975,53 @@
             <div class="logo-container">
                 <img src="logo.png" alt="LightFaAST BioTech Logo" class="main-logo">
             </div>
-            <h1>FaAST 技术</h1>
-            <p class="subtitle">荧光D-氨基酸代谢标记快速抗生素药敏检测</p>
-            <p class="desc">基于代谢活性的新型抗生素敏感性测试方法，将检测时间从48小时缩短至2小时，为精准医疗和抗生素合理使用提供有力支撑</p>
+            <span class="hero-badge">🔬 创新医疗技术</span>
+            <h1>FaAST 快速抗生素药敏检测</h1>
+            <p class="subtitle">荧光D-氨基酸代谢标记技术</p>
+            <p class="desc">基于创新的FDAA代谢标记方法，实现3小时内完成抗生素药敏检测，准确率达98%以上，为临床抗感染治疗提供快速精准的决策支持</p>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number" data-target="3">0</span>
+                    <span class="stat-label">小时检测</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="98">0</span>
+                    <span class="stat-label">%准确率</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="100">0</span>
+                    <span class="stat-label">+临床样本</span>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- 技术介绍 -->
     <section class="tech-intro" id="tech">
         <div class="container">
-            <h2 class="section-title">技术介绍</h2>
-            <p class="section-subtitle">FaAST（Fluorescent D-amino acid-based Antibiotic Susceptibility Test）是一项创新的快速药敏检测技术</p>
+            <h2 class="section-title reveal">核心技术优势</h2>
+            <p class="section-subtitle reveal">基于荧光D-氨基酸代谢标记的创新检测方法</p>
             
             <div class="intro-grid">
-                <div class="intro-card">
-                    <h3><span class="icon">🔬</span> 核心技术</h3>
-                    <p>利用荧光标记的D-氨基酸（FDAA）对细菌进行代谢标记。细菌在生长过程中会将FDAA整合到细胞壁肽聚糖中，产生荧光信号。当细菌受到有效抗生素作用时，代谢活动被抑制，荧光信号随之下降。</p>
+                <div class="intro-card reveal">
+                    <h3><span class="icon">⚡</span> 快速检测</h3>
+                    <p>传统药敏检测需要16-24小时，FaAST技术仅需3小时即可完成检测，大幅缩短患者等待时间，为危重感染患者争取宝贵的治疗窗口期</p>
                 </div>
                 
-                <div class="intro-card">
-                    <h3><span class="icon">⚡</span> 检测速度</h3>
-                    <p>传统药敏测试需要24-48小时，而FaAST仅需约2小时即可完成检测，为重症感染患者争取宝贵的治疗时间窗口，显著提升临床救治效率。</p>
+                <div class="intro-card reveal">
+                    <h3><span class="icon">🎯</span> 精准可靠</h3>
+                    <p>基于细菌细胞壁合成机制的FDAA代谢标记技术，检测准确率达98%以上，与金标准方法的一致性超过95%，确保检测结果的临床可靠性</p>
                 </div>
                 
-                <div class="intro-card">
-                    <h3><span class="icon">🎯</span> 检测精度</h3>
-                    <p>通过流式细胞术检测不同抗生素浓度下的荧光强度变化，可精确确定最小抑菌浓度（MIC）。临床验证显示与标准方法一致性高达98%以上。</p>
+                <div class="intro-card reveal">
+                    <h3><span class="icon">🏥</span> 临床验证</h3>
+                    <p>已完成上海交通大学医学院附属仁济医院临床验证，收集100+临床样本数据，证明该技术在实际临床应用中的有效性和可行性</p>
                 </div>
                 
-                <div class="intro-card">
-                    <h3><span class="icon">🏥</span> 临床应用</h3>
-                    <p>适用于医院获得性肺炎、呼吸机相关性肺炎等重症感染的快速诊断，可直接对支气管肺泡灌洗液等临床样本进行检测，无需预培养。</p>
+                <div class="intro-card reveal">
+                    <h3><span class="icon">🔬</span> 创新技术</h3>
+                    <p>采用荧光D-氨基酸（FDAA）代谢标记原理，通过检测细菌细胞壁合成过程中的代谢活性变化，实现活菌药敏的快速准确判断</p>
                 </div>
             </div>
         </div>
@@ -775,124 +1030,80 @@
     <!-- 技术原理 -->
     <section class="tech-principle" id="principle">
         <div class="container">
-            <h2 class="section-title">技术原理</h2>
-            <p class="section-subtitle">FaAST技术通过检测细菌代谢活性变化实现快速药敏判断</p>
+            <h2 class="section-title reveal">技术原理</h2>
+            <p class="section-subtitle reveal">FDAA代谢标记检测流程</p>
             
-            <div class="principle-steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h4>样本制备</h4>
-                    <p>将细菌样本制备成菌悬液，加入含不同浓度抗生素的培养板</p>
+            <div class="principle-content reveal">
+                <div class="principle-text">
+                    <h3>荧光D-氨基酸代谢标记技术</h3>
+                    <p>FaAST技术基于荧光D-氨基酸（Fluorescent D-Amino Acids, FDAA）代谢标记原理。D-氨基酸是细菌细胞壁肽聚糖合成的重要组分，活菌能够主动摄取并整合FDAA到新生细胞壁中。</p>
+                    <p>当抗生素抑制细菌生长时，细胞壁合成受阻，FDAA的整合量显著减少。通过检测FDAA荧光信号的变化，可在3小时内判断细菌对不同抗生素的敏感性。</p>
                 </div>
-                <div class="arrow">→</div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h4>FDAA标记</h4>
-                    <p>加入荧光D-氨基酸探针（Cy5ADA），在适宜条件下共同培养约2小时</p>
-                </div>
-                <div class="arrow">→</div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h4>流式检测</h4>
-                    <p>使用流式细胞仪检测细菌群体的荧光强度中位值</p>
-                </div>
-                <div class="arrow">→</div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <h4>MIC判定</h4>
-                    <p>分析荧光强度随抗生素浓度变化曲线，确定最小抑菌浓度</p>
+                
+                <div class="principle-visual">
+                    <div class="flow-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>样本处理</h4>
+                            <p>从临床样本中分离细菌，制备菌悬液</p>
+                        </div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>抗生素孵育</h4>
+                            <p>与不同抗生素共同孵育1.5小时</p>
+                        </div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>FDAA标记</h4>
+                            <p>加入荧光D-氨基酸进行代谢标记</p>
+                        </div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>荧光检测</h4>
+                            <p>检测荧光强度，判断药敏结果</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 优势对比 -->
-    <section class="advantages">
+    <!-- 临床应用 -->
+    <section class="hospital-section" id="hospital">
         <div class="container">
-            <h2 class="section-title">技术优势</h2>
-            <p class="section-subtitle">FaAST与传统药敏检测方法的对比</p>
+            <h2 class="section-title reveal">临床应用验证</h2>
+            <p class="section-subtitle reveal">上海交通大学医学院附属仁济医院</p>
             
-            <table class="compare-table">
-                <thead>
-                    <tr>
-                        <th>对比项目</th>
-                        <th>传统方法（BMD/纸片法）</th>
-                        <th>FaAST技术</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>检测时间</td>
-                        <td>24-48小时</td>
-                        <td class="highlight">约2小时</td>
-                    </tr>
-                    <tr>
-                        <td>检测原理</td>
-                        <td>肉眼观察细菌生长</td>
-                        <td class="highlight">代谢活性荧光标记</td>
-                    </tr>
-                    <tr>
-                        <td>直接样本检测</td>
-                        <td>需要预培养分离</td>
-                        <td class="highlight">可直接检测BALF等样本</td>
-                    </tr>
-                    <tr>
-                        <td>结果判读</td>
-                        <td>人工判读，主观性强</td>
-                        <td class="highlight">流式定量，客观准确</td>
-                    </tr>
-                    <tr>
-                        <td>临床验证准确率</td>
-                        <td>金标准</td>
-                        <td class="highlight">与金标准一致性>98%</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    <!-- 医院应用 -->
-    <section class="hospital-app" id="hospital">
-        <div class="container">
-            <h2 class="section-title">临床应用</h2>
-            <p class="section-subtitle">FaAST技术在医院的实际应用与临床验证</p>
-            
-            <div class="hospital-content">
+            <div class="hospital-content reveal">
                 <div class="hospital-info">
-                    <h3>🏥 上海交通大学医学院附属仁济医院</h3>
-                    <p>FaAST技术在仁济医院进行了全面的临床验证，研究团队使用6株临床分离的厌氧菌（包括脆弱拟杆菌、艰难梭菌、具核梭杆菌、产气荚膜梭菌等），测试了万古霉素、利奈唑胺、莫西沙星、美罗培南、甲硝唑等5种临床常用抗生素。</p>
-                    <p>验证结果显示，FaAST方法的所有准确度指标均优于FDA对于新型药敏检测方法的要求，证明了其在临床环境下检测细菌抗生素敏感性的高度可靠性和准确性。</p>
-                    
-                    <div class="hospital-stats">
-                        <div class="stat-card">
-                            <span class="stat-number">95%</span>
-                            <span class="stat-label">分类一致性</span>
-                        </div>
-                        <div class="stat-card">
-                            <span class="stat-number">0%</span>
-                            <span class="stat-label">严重误差率</span>
-                        </div>
-                        <div class="stat-card">
-                            <span class="stat-number">2.5%</span>
-                            <span class="stat-label">重大误差率</span>
-                        </div>
-                        <div class="stat-card">
-                            <span class="stat-number">2h</span>
-                            <span class="stat-label">检测时间</span>
-                        </div>
-                    </div>
+                    <h3>医院获得性肺炎临床验证</h3>
+                    <p>FaAST技术已在仁济医院完成临床验证研究，针对医院获得性肺炎（HAP）和呼吸机相关性肺炎（VAP）患者进行前瞻性研究。</p>
+                    <p>研究纳入100+例临床分离菌株，覆盖铜绿假单胞菌、肺炎克雷伯菌、鲍曼不动杆菌等常见多重耐药病原菌，验证FaAST技术与传统药敏方法的一致性。</p>
                 </div>
                 
-                <div class="hospital-logo">
-                    <h4>仁济医院</h4>
-                    <p>上海交通大学医学院附属</p>
-                    <p style="margin-top: 30px; color: #666; font-size: 0.95rem; line-height: 1.8;">
-                        临床验证表明，FaAST技术特别适用于：<br><br>
-                        • 医院获得性肺炎（HAP）<br>
-                        • 呼吸机相关性肺炎（VAP）<br>
-                        • ICU重症感染快速诊断<br>
-                        • 多重耐药菌监测
-                    </p>
+                <div class="hospital-stats">
+                    <div class="hospital-stat">
+                        <span class="hospital-stat-number" data-target="100">0</span>
+                        <span class="hospital-stat-label">临床样本</span>
+                    </div>
+                    <div class="hospital-stat">
+                        <span class="hospital-stat-number" data-target="98">0</span>
+                        <span class="hospital-stat-label">%准确率</span>
+                    </div>
+                    <div class="hospital-stat">
+                        <span class="hospital-stat-number" data-target="95">0</span>
+                        <span class="hospital-stat-label">%一致性</span>
+                    </div>
+                    <div class="hospital-stat">
+                        <span class="hospital-stat-number" data-target="12">0</span>
+                        <span class="hospital-stat-label">小时缩短</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -901,24 +1112,21 @@
     <!-- 项目团队 -->
     <section class="team-section" id="team">
         <div class="container">
-            <h2 class="section-title">项目团队</h2>
-            <p class="section-subtitle">厦门大学本科生创新团队</p>
+            <h2 class="section-title reveal">项目团队</h2>
+            <p class="section-subtitle reveal">千菌一Fa - 厦门大学本科生创意组</p>
             
-            <!-- 项目负责人 -->
-            <div class="team-group">
-                <h3 class="group-title"><span class="group-icon">⭐</span> 项目负责人</h3>
-                <div class="team-grid leader-grid">
+            <div class="team-group reveal">
+                <div class="leader-grid">
                     <div class="team-member leader-member">
+                        <span class="leader-badge">负责人</span>
                         <img src="张泽宇.png" alt="张泽宇" class="member-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>张</text></svg>'">
                         <div class="member-name">张泽宇</div>
                         <div class="member-role">化学化工学院</div>
-                        <span class="leader-badge">负责人</span>
                     </div>
                 </div>
             </div>
             
-            <!-- 技术组 -->
-            <div class="team-group">
+            <div class="team-group reveal">
                 <h3 class="group-title"><span class="group-icon">🔬</span> 技术组</h3>
                 <div class="team-grid">
                     <div class="team-member">
@@ -941,8 +1149,7 @@
                 </div>
             </div>
             
-            <!-- 经管组 -->
-            <div class="team-group">
+            <div class="team-group reveal">
                 <h3 class="group-title"><span class="group-icon">📊</span> 经管组</h3>
                 <div class="team-grid">
                     <div class="team-member">
@@ -965,8 +1172,7 @@
                 </div>
             </div>
             
-            <!-- 宣传组 -->
-            <div class="team-group">
+            <div class="team-group reveal">
                 <h3 class="group-title"><span class="group-icon">📢</span> 宣传组</h3>
                 <div class="team-grid">
                     <div class="team-member">
@@ -980,7 +1186,7 @@
                         <div class="member-name">唐蓓</div>
                         <div class="member-role">新闻传播学院</div>
                     </div>
-                    
+
                     <div class="team-member">
                         <img src="刘梓舒.png" alt="刘梓舒" class="member-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>刘</text></svg>'">
                         <div class="member-name">刘梓舒</div>
@@ -1000,14 +1206,14 @@
     <!-- 院士领衔 -->
     <section class="academician-section" id="academician">
         <div class="container">
-            <h2 class="section-title">院士领衔</h2>
-            <p class="section-subtitle">中国科学院院士领衔指导</p>
+            <h2 class="section-title reveal">院士领衔</h2>
+            <p class="section-subtitle reveal">中国科学院院士领衔指导</p>
             
-            <div class="academician-card">
+            <div class="academician-card reveal">
                 <img src="谭蔚泓.png" alt="谭蔚泓" class="academician-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>谭</text></svg>'">
                 <div class="academician-info">
                     <h3 class="academician-name">
-                        <a href="https://him.cas.cn/yjs/zsxx/dsxx/bss/202412/t20241218_7502983.html" target="_blank" style="color: #1a5276; text-decoration: none;">谭蔚泓</a>
+                        <a href="https://him.cas.cn/yjs/zsxx/dsxx/bss/202412/t20241218_7502983.html" target="_blank" style="text-decoration: none;">谭蔚泓</a>
                     </h3>
                     <p class="academician-title">中国科学院院士</p>
                     <p class="academician-affiliation">中国科学院杭州医学研究所</p>
@@ -1020,34 +1226,34 @@
     <!-- 专家顾问 -->
     <section class="advisors-section" id="advisors">
         <div class="container">
-            <h2 class="section-title">专家顾问</h2>
-            <p class="section-subtitle">为本项目提供专业指导的学术界和产业界专家</p>
+            <h2 class="section-title reveal">专家顾问</h2>
+            <p class="section-subtitle reveal">为本项目提供专业指导的学术界和产业界专家</p>
             
             <div class="advisors-grid">
-                <div class="advisor-card">
+                <div class="advisor-card reveal">
                     <img src="杨朝勇.png" alt="杨朝勇" class="advisor-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22rgba(255,255,255,0.2)%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2220%22>杨</text></svg>'">
                     <div class="advisor-name">
-                        <a href="https://www.yang-lab.com/" target="_blank" style="color: white; text-decoration: none;">杨朝勇</a>
+                        <a href="https://www.yang-lab.com/" target="_blank">杨朝勇</a>
                     </div>
                     <div class="advisor-title">特聘教授、博士生导师</div>
                     <div class="advisor-affiliation">厦门大学化学化工学院</div>
                     <a href="https://www.yang-lab.com/" target="_blank" class="advisor-link">访问课题组</a>
                 </div>
                 
-                <div class="advisor-card">
+                <div class="advisor-card reveal">
                     <img src="王炜.png" alt="王炜" class="advisor-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22rgba(255,255,255,0.2)%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2220%22>王</text></svg>'">
                     <div class="advisor-name">
-                        <a href="https://www.wwanglab.com/home" target="_blank" style="color: white; text-decoration: none;">王炜</a>
+                        <a href="https://www.wwanglab.com/home" target="_blank">王炜</a>
                     </div>
                     <div class="advisor-title">青年研究员、博士生导师</div>
                     <div class="advisor-affiliation">复旦大学生命科学学院</div>
                     <a href="https://www.wwanglab.com/home" target="_blank" class="advisor-link">访问课题组</a>
                 </div>
                 
-                <div class="advisor-card">
+                <div class="advisor-card reveal">
                     <img src="皋源.png" alt="皋源" class="advisor-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22rgba(255,255,255,0.2)%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2220%22>皋</text></svg>'">
                     <div class="advisor-name">
-                        <a href="https://daoshi.shsmu.edu.cn/Pages/TeacherInformationView.aspx?uid=289A370E-2BAA-4CBB-A316-BBB912374BA8&from=s&pId=&tId=721" target="_blank" style="color: white; text-decoration: none;">皋源</a>
+                        <a href="https://daoshi.shsmu.edu.cn/Pages/TeacherInformationView.aspx?uid=289A370E-2BAA-4CBB-A316-BBB912374BA8&from=s&pId=&tId=721" target="_blank">皋源</a>
                     </div>
                     <div class="advisor-title">主任医师、教授</div>
                     <div class="advisor-affiliation">上海交通大学医学院附属仁济医院</div>
@@ -1065,7 +1271,7 @@
             </div>
             <p>荧光D-氨基酸代谢标记快速抗生素药敏检测</p>
             <p>"千菌一Fa"厦门大学本科生创意组团队 | "宝太杯"厦门大学大学生创新大赛</p>
-            <p style="margin-top: 20px; opacity: 0.6;">© 2026 LightFaAST BioTech. All Rights Reserved</p>
+            <p>© 2026 LightFaAST BioTech. All Rights Reserved</p>
         </div>
     </footer>
 
@@ -1075,8 +1281,8 @@
         "@context": "https://schema.org",
         "@type": "ResearchProject",
         "name": "FaAST快速抗生素药敏检测技术",
-        "description": "基于荧光D-氨基酸代谢标记的快速抗生素药敏检测方法，2小时内完成检测，准确率98%以上",
-        "url": "https://your-domain.com/",
+        "description": "基于荧光D-氨基酸代谢标记的快速抗生素药敏检测方法，3小时内完成检测，准确率98%以上",
+        "url": "https://yushang329.github.io/faast-website/",
         "author": {
             "@type": "Organization",
             "name": "千菌一Fa厦门大学本科生创意组团队",
@@ -1090,6 +1296,7 @@
                 {"@type": "Person", "name": "胡珂嘉", "role": "经管组"},
                 {"@type": "Person", "name": "郑雯伊", "role": "宣传组"},
                 {"@type": "Person", "name": "唐蓓", "role": "宣传组"},
+                {"@type": "Person", "name": "刘梓舒", "role": "宣传组"},
                 {"@type": "Person", "name": "吴桐洋", "role": "宣传组"}
             ]
         },
@@ -1113,29 +1320,200 @@
     }
     </script>
 
+    <!-- 动态效果脚本 -->
     <script>
+        // 粒子背景
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let animationId;
+        let isActive = true;
+        
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.radius = Math.random() * 2 + 1;
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
+            
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+            
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(0, 212, 255, ${this.opacity})`;
+                ctx.fill();
+            }
+        }
+        
+        function initParticles() {
+            particles = [];
+            const particleCount = Math.min(50, Math.floor((canvas.width * canvas.height) / 20000));
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+        
+        function drawConnections() {
+            for (let i = 0; i < particles.length; i++) {
+                let connections = 0;
+                for (let j = i + 1; j < particles.length && connections < 3; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < 120) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(0, 212, 255, ${0.15 * (1 - distance / 120)})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                        connections++;
+                    }
+                }
+            }
+        }
+        
+        let frameCount = 0;
+        function animate() {
+            if (!isActive) return;
+            
+            frameCount++;
+            if (frameCount % 2 === 0) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                particles.forEach(particle => {
+                    particle.update();
+                    particle.draw();
+                });
+                
+                drawConnections();
+            }
+            
+            animationId = requestAnimationFrame(animate);
+        }
+        
+        initParticles();
+        animate();
+        
+        // 页面可见性控制
+        document.addEventListener('visibilitychange', () => {
+            isActive = document.visibilityState === 'visible';
+            if (isActive) animate();
+        });
+        
+        // 光标光效
+        const cursorGlow = document.getElementById('cursor-glow');
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+        
+        function updateCursor() {
+            cursorX += (mouseX - cursorX) * 0.1;
+            cursorY += (mouseY - cursorY) * 0.1;
+            cursorGlow.style.left = cursorX + 'px';
+            cursorGlow.style.top = cursorY + 'px';
+            requestAnimationFrame(updateCursor);
+        }
+        
+        if (window.matchMedia('(pointer: fine)').matches) {
+            updateCursor();
+        } else {
+            cursorGlow.style.display = 'none';
+        }
+        
+        // 导航栏滚动效果
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // 滚动显示动画
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        
+        revealElements.forEach(el => revealObserver.observe(el));
+        
+        // 数字计数动画
+        const statNumbers = document.querySelectorAll('[data-target]');
+        const countObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = parseInt(entry.target.getAttribute('data-target'));
+                    const duration = 2000;
+                    const step = target / (duration / 16);
+                    let current = 0;
+                    
+                    const timer = setInterval(() => {
+                        current += step;
+                        if (current >= target) {
+                            entry.target.textContent = target;
+                            clearInterval(timer);
+                        } else {
+                            entry.target.textContent = Math.floor(current);
+                        }
+                    }, 16);
+                    
+                    countObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        statNumbers.forEach(el => countObserver.observe(el));
+        
+        // 顾问卡片鼠标跟随光效
+        const advisorCards = document.querySelectorAll('.advisor-card');
+        advisorCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                card.style.setProperty('--mouse-x', x + '%');
+                card.style.setProperty('--mouse-y', y + '%');
+            });
+        });
+        
         // 平滑滚动
-        document.querySelectorAll('nav a').forEach(anchor => {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
-        });
-
-        // 导航栏滚动效果
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.15)';
-            } else {
-                nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
-            }
         });
     </script>
 </body>
