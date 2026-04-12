@@ -672,6 +672,13 @@
             z-index: 1;
         }
         
+        .academician-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
         .academician-photo {
             width: 200px;
             height: 200px;
@@ -973,7 +980,7 @@
     <section class="hero" id="home">
         <div class="hero-content">
             <div class="logo-container">
-                <img src="logo.png" alt="LightFaAST BioTech Logo" class="main-logo">
+                <img src="logo.jpg" alt="LightFaAST BioTech Logo" class="main-logo">
             </div>
             <span class="hero-badge">🔬 创新医疗技术</span>
             <h1>FaAST 快速抗生素药敏检测</h1>
@@ -1119,32 +1126,57 @@
                 <div class="leader-grid">
                     <div class="team-member leader-member">
                         <span class="leader-badge">负责人</span>
-                        <img src="张泽宇.png" alt="张泽宇" class="member-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>张</text></svg>'">
-                        <div class="member-name">张泽宇</div>
-                        <div class="member-role">化学化工学院</div>
+                        <img src="许依玲-总经理.png" alt="许依玲" class="member-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>许</text></svg>'">
+                        <div class="member-name">许依玲</div>
+                        <div class="member-role">总经理</div>
                     </div>
                 </div>
             </div>
             
             <div class="team-group reveal">
                 <h3 class="group-title"><span class="group-icon">🔬</span> 技术组</h3>
-                <div class="team-grid">
+                <div class="team-grid" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 20px;">
                     <div class="team-member">
-                        <img src="黄尹真.png" alt="黄尹真" class="member-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>黄</text></svg>'">
+                        <img src="张泽宇-技术总监.png" alt="张泽宇" class="member-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>张</text></svg>'">
+                        <div class="member-name">张泽宇</div>
+                        <div class="member-role">技术总监</div>
+                    </div>
+                    
+                    <div class="team-member">
+                        <img src="黄晓丹-运营总监.png" alt="黄晓丹" class="member-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>黄</text></svg>'">
+                        <div class="member-name">黄晓丹</div>
+                        <div class="member-role">运营总监</div>
+                    </div>
+                    
+                    <div class="team-member">
+                        <img src="那行-生产总监.png" alt="那行" class="member-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>那</text></svg>'">
+                        <div class="member-name">那行</div>
+                        <div class="member-role">生产总监</div>
+                    </div>
+                    
+                    <div class="team-member">
+                        <img src="朱浩然-产品总监.png" alt="朱浩然" class="member-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>朱</text></svg>'">
+                        <div class="member-name">朱浩然</div>
+                        <div class="member-role">产品总监</div>
+                    </div>
+                </div>
+                <div class="team-grid" style="grid-template-columns: repeat(3, 1fr); justify-content: center; max-width: 800px; margin: 0 auto;">
+                    <div class="team-member">
+                        <img src="黄尹真-研发经理.png" alt="黄尹真" class="member-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>黄</text></svg>'">
                         <div class="member-name">黄尹真</div>
-                        <div class="member-role">化学化工学院</div>
+                        <div class="member-role">研发经理</div>
                     </div>
                     
                     <div class="team-member">
-                        <img src="朱文杰.png" alt="朱文杰" class="member-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>朱</text></svg>'">
-                        <div class="member-name">朱文杰</div>
-                        <div class="member-role">化学化工学院</div>
-                    </div>
-                    
-                    <div class="team-member">
-                        <img src="叶润.png" alt="叶润" class="member-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>叶</text></svg>'">
+                        <img src="叶润-生产经理.png" alt="叶润" class="member-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>叶</text></svg>'">
                         <div class="member-name">叶润</div>
-                        <div class="member-role">化学化工学院</div>
+                        <div class="member-role">生产经理</div>
+                    </div>
+                    
+                    <div class="team-member">
+                        <img src="朱文杰-产品经理.png" alt="朱文杰" class="member-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>朱</text></svg>'">
+                        <div class="member-name">朱文杰</div>
+                        <div class="member-role">产品经理</div>
                     </div>
                 </div>
             </div>
@@ -1153,21 +1185,21 @@
                 <h3 class="group-title"><span class="group-icon">📊</span> 经管组</h3>
                 <div class="team-grid">
                     <div class="team-member">
-                        <img src="仲瑾雯.png" alt="仲瑾雯" class="member-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>仲</text></svg>'">
+                        <img src="仲瑾雯-人事总监.png" alt="仲瑾雯" class="member-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>仲</text></svg>'">
                         <div class="member-name">仲瑾雯</div>
-                        <div class="member-role">邹至庄经济研究院</div>
+                        <div class="member-role">人事总监</div>
                     </div>
                     
                     <div class="team-member">
-                        <img src="任根泽.png" alt="任根泽" class="member-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>任</text></svg>'">
+                        <img src="任根泽-财务总监.png" alt="任根泽" class="member-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>任</text></svg>'">
                         <div class="member-name">任根泽</div>
-                        <div class="member-role">经济学院</div>
+                        <div class="member-role">财务总监</div>
                     </div>
                     
                     <div class="team-member">
-                        <img src="胡珂嘉.png" alt="胡珂嘉" class="member-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>胡</text></svg>'">
+                        <img src="胡珂嘉-市场总监.png" alt="胡珂嘉" class="member-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>胡</text></svg>'">
                         <div class="member-name">胡珂嘉</div>
-                        <div class="member-role">管理学院</div>
+                        <div class="member-role">市场总监</div>
                     </div>
                 </div>
             </div>
@@ -1176,27 +1208,27 @@
                 <h3 class="group-title"><span class="group-icon">📢</span> 宣传组</h3>
                 <div class="team-grid">
                     <div class="team-member">
-                        <img src="郑雯伊.png" alt="郑雯伊" class="member-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>郑</text></svg>'">
+                        <img src="郑雯伊-视觉总监.png" alt="郑雯伊" class="member-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>郑</text></svg>'">
                         <div class="member-name">郑雯伊</div>
-                        <div class="member-role">新闻传播学院</div>
+                        <div class="member-role">视觉总监</div>
                     </div>
                     
                     <div class="team-member">
-                        <img src="唐蓓.png" alt="唐蓓" class="member-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>唐</text></svg>'">
+                        <img src="唐蓓-创意总监.png" alt="唐蓓" class="member-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>唐</text></svg>'">
                         <div class="member-name">唐蓓</div>
-                        <div class="member-role">新闻传播学院</div>
+                        <div class="member-role">创意总监</div>
                     </div>
 
                     <div class="team-member">
-                        <img src="刘梓舒.png" alt="刘梓舒" class="member-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>刘</text></svg>'">
+                        <img src="刘梓舒-美术总监.png" alt="刘梓舒" class="member-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>刘</text></svg>'">
                         <div class="member-name">刘梓舒</div>
-                        <div class="member-role">新闻传播学院</div>
+                        <div class="member-role">美术总监</div>
                     </div>
                     
                     <div class="team-member">
-                        <img src="吴桐洋.png" alt="吴桐洋" class="member-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>吴</text></svg>'">
+                        <img src="吴桐洋-艺术总监.png" alt="吴桐洋" class="member-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>吴</text></svg>'">
                         <div class="member-name">吴桐洋</div>
-                        <div class="member-role">艺术学院</div>
+                        <div class="member-role">艺术总监</div>
                     </div>
                 </div>
             </div>
@@ -1209,15 +1241,29 @@
             <h2 class="section-title reveal">院士领衔</h2>
             <p class="section-subtitle reveal">中国科学院院士领衔指导</p>
             
-            <div class="academician-card reveal">
-                <img src="谭蔚泓.png" alt="谭蔚泓" class="academician-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>谭</text></svg>'">
-                <div class="academician-info">
-                    <h3 class="academician-name">
-                        <a href="https://him.cas.cn/yjs/zsxx/dsxx/bss/202412/t20241218_7502983.html" target="_blank" style="text-decoration: none;">谭蔚泓</a>
-                    </h3>
-                    <p class="academician-title">中国科学院院士</p>
-                    <p class="academician-affiliation">中国科学院杭州医学研究所</p>
-                    <a href="https://him.cas.cn/yjs/zsxx/dsxx/bss/202412/t20241218_7502983.html" target="_blank" class="academician-link">查看详情 →</a>
+            <div class="academician-cards">
+                <div class="academician-card reveal">
+                    <img src="谭蔚泓.png" alt="谭蔚泓" class="academician-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>谭</text></svg>'">
+                    <div class="academician-info">
+                        <h3 class="academician-name">
+                            <a href="https://him.cas.cn/yjs/zsxx/dsxx/bss/202412/t20241218_7502983.html" target="_blank" style="text-decoration: none;">谭蔚泓</a>
+                        </h3>
+                        <p class="academician-title">中国科学院院士</p>
+                        <p class="academician-affiliation">中国科学院杭州医学研究所</p>
+                        <a href="https://him.cas.cn/yjs/zsxx/dsxx/bss/202412/t20241218_7502983.html" target="_blank" class="academician-link">查看详情 →</a>
+                    </div>
+                </div>
+                
+                <div class="academician-card reveal">
+                    <img src="赵玉芬.png" alt="赵玉芬" class="academician-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>赵</text></svg>'">
+                    <div class="academician-info">
+                        <h3 class="academician-name">
+                            <a href="https://chem.xmu.edu.cn/info/1415/1310.htm" target="_blank" style="text-decoration: none;">赵玉芬</a>
+                        </h3>
+                        <p class="academician-title">中国科学院院士</p>
+                        <p class="academician-affiliation">厦门大学化学化工学院</p>
+                        <a href="https://chem.xmu.edu.cn/info/1415/1310.htm" target="_blank" class="academician-link">查看详情 →</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1267,7 +1313,7 @@
     <footer>
         <div class="container">
             <div class="footer-logo-content">
-                <img src="logo.png" alt="LightFaAST BioTech Logo" class="footer-logo-img">
+                <img src="logo.jpg" alt="LightFaAST BioTech Logo" class="footer-logo-img">
             </div>
             <p>荧光D-氨基酸代谢标记快速抗生素药敏检测</p>
             <p>"千菌一Fa"厦门大学本科生创意组团队 | "宝太杯"厦门大学大学生创新大赛</p>
@@ -1287,7 +1333,11 @@
             "@type": "Organization",
             "name": "千菌一Fa厦门大学本科生创意组团队",
             "member": [
-                {"@type": "Person", "name": "张泽宇", "role": "项目负责人"},
+                {"@type": "Person", "name": "许依玲", "role": "项目负责人"},
+                {"@type": "Person", "name": "黄晓丹", "role": "技术组"},
+                {"@type": "Person", "name": "那行", "role": "技术组"},
+                {"@type": "Person", "name": "朱浩然", "role": "技术组"},
+                {"@type": "Person", "name": "张泽宇", "role": "技术组"},
                 {"@type": "Person", "name": "黄尹真", "role": "技术组"},
                 {"@type": "Person", "name": "朱文杰", "role": "技术组"},
                 {"@type": "Person", "name": "叶润", "role": "技术组"},
