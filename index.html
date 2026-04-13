@@ -703,11 +703,22 @@
         }
         
         .academician-title {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             color: #c9a227;
             font-weight: 600;
-            margin-bottom: 10px;
+            margin-bottom: 6px;
             text-shadow: 0 0 20px rgba(201, 162, 39, 0.3);
+        }
+        
+        .academician-role-tag {
+            display: inline-block;
+            font-size: 0.85rem;
+            color: var(--primary);
+            border: 1px solid rgba(0, 212, 255, 0.5);
+            border-radius: 20px;
+            padding: 3px 14px;
+            margin-bottom: 14px;
+            letter-spacing: 0.05em;
         }
         
         .academician-affiliation {
@@ -748,20 +759,53 @@
         
         .advisors-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 35px;
             margin-top: 50px;
+            justify-content: center;
+        }
+        
+        .advisors-row-center {
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+            margin-top: 35px;
+        }
+        
+        @media (max-width: 1100px) {
+            .advisors-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .advisors-grid,
+            .advisors-row-center {
+                grid-template-columns: 1fr;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .advisor-card {
+                max-width: 350px;
+                width: 100%;
+            }
         }
         
         .advisor-card {
             background: var(--card-bg);
-            padding: 40px;
+            padding: 30px;
             border-radius: 20px;
             text-align: center;
             border: 1px solid rgba(0, 212, 255, 0.1);
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
+        }
+        
+        .advisor-card .advisor-role-tag {
+            margin-top: 0;
+            margin-bottom: 15px;
         }
         
         .advisor-card::after {
@@ -824,6 +868,52 @@
             color: var(--primary);
             font-size: 1rem;
             margin-bottom: 8px;
+        }
+        
+        .advisor-role-tag {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #00d4ff;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin: 10px 0;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+            position: relative;
+        }
+        
+        .advisor-role-tag::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+        }
+        
+        .academician-role-tag {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #00d4ff;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            margin: 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.4);
+            position: relative;
+        }
+        
+        .academician-role-tag::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00d4ff, transparent);
         }
         
         .advisor-affiliation {
@@ -1243,7 +1333,8 @@
             
             <div class="academician-cards">
                 <div class="academician-card reveal">
-                    <img src="谭蔚泓.png" alt="谭蔚泓" class="academician-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>谭</text></svg>'">
+                    <span class="academician-role-tag">特聘专家</span>
+                    <img src="谭蔚泓-特聘专家.png" alt="谭蔚泓" class="academician-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>谭</text></svg>'">
                     <div class="academician-info">
                         <h3 class="academician-name">
                             <a href="https://him.cas.cn/yjs/zsxx/dsxx/bss/202412/t20241218_7502983.html" target="_blank" style="text-decoration: none;">谭蔚泓</a>
@@ -1255,7 +1346,8 @@
                 </div>
                 
                 <div class="academician-card reveal">
-                    <img src="赵玉芬.png" alt="赵玉芬" class="academician-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>赵</text></svg>'">
+                    <span class="academician-role-tag">特聘专家</span>
+                    <img src="赵玉芬-特聘专家.png" alt="赵玉芬" class="academician-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23e8f4f8%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%232874a6%22 font-size=%2220%22>赵</text></svg>'">
                     <div class="academician-info">
                         <h3 class="academician-name">
                             <a href="https://chem.xmu.edu.cn/info/1415/1310.htm" target="_blank" style="text-decoration: none;">赵玉芬</a>
@@ -1277,7 +1369,8 @@
             
             <div class="advisors-grid">
                 <div class="advisor-card reveal">
-                    <img src="杨朝勇.png" alt="杨朝勇" class="advisor-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22rgba(255,255,255,0.2)%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2220%22>杨</text></svg>'">
+                    <img src="杨朝勇-技术顾问.png" alt="杨朝勇" class="advisor-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22rgba(255,255,255,0.2)%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2220%22>杨</text></svg>'">
+                    <div class="advisor-role-tag">技术顾问</div>
                     <div class="advisor-name">
                         <a href="https://www.yang-lab.com/" target="_blank">杨朝勇</a>
                     </div>
@@ -1287,7 +1380,8 @@
                 </div>
                 
                 <div class="advisor-card reveal">
-                    <img src="王炜.png" alt="王炜" class="advisor-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22rgba(255,255,255,0.2)%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2220%22>王</text></svg>'">
+                    <img src="王炜-产业顾问.png" alt="王炜" class="advisor-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22rgba(255,255,255,0.2)%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2220%22>王</text></svg>'">
+                    <div class="advisor-role-tag">产业顾问</div>
                     <div class="advisor-name">
                         <a href="https://www.wwanglab.com/home" target="_blank">王炜</a>
                     </div>
@@ -1297,13 +1391,38 @@
                 </div>
                 
                 <div class="advisor-card reveal">
-                    <img src="皋源.png" alt="皋源" class="advisor-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22rgba(255,255,255,0.2)%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2220%22>皋</text></svg>'">
+                    <img src="皋源-产业顾问.png" alt="皋源" class="advisor-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22rgba(255,255,255,0.2)%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2220%22>皋</text></svg>'">
+                    <div class="advisor-role-tag">产业顾问</div>
                     <div class="advisor-name">
                         <a href="https://daoshi.shsmu.edu.cn/Pages/TeacherInformationView.aspx?uid=289A370E-2BAA-4CBB-A316-BBB912374BA8&from=s&pId=&tId=721" target="_blank">皋源</a>
                     </div>
                     <div class="advisor-title">主任医师、教授</div>
                     <div class="advisor-affiliation">上海交通大学医学院附属仁济医院</div>
                     <a href="https://daoshi.shsmu.edu.cn/Pages/TeacherInformationView.aspx?uid=289A370E-2BAA-4CBB-A316-BBB912374BA8&from=s&pId=&tId=721" target="_blank" class="advisor-link">访问课题组</a>
+                </div>
+            </div>
+            
+            <div class="advisors-row-center">
+                <div class="advisor-card reveal">
+                    <img src="陈嘉欣-工程师.png" alt="陈嘉欣" class="advisor-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22rgba(255,255,255,0.2)%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2220%22>陈</text></svg>'">
+                    <div class="advisor-role-tag">工程师</div>
+                    <div class="advisor-name">
+                        <a href="https://cbe.xmu.edu.cn/info/1014/13192.htm" target="_blank">陈嘉欣</a>
+                    </div>
+                    <div class="advisor-title">助理实验师</div>
+                    <div class="advisor-affiliation">厦门大学化学化工学院</div>
+                    <a href="https://cbe.xmu.edu.cn/info/1014/13192.htm" target="_blank" class="advisor-link">查看详情 →</a>
+                </div>
+
+                <div class="advisor-card reveal">
+                    <img src="尚策-辅导员.png" alt="尚策" class="advisor-photo" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22rgba(255,255,255,0.2)%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2220%22>尚</text></svg>'">
+                    <div class="advisor-role-tag">心理顾问</div>
+                    <div class="advisor-name">
+                        <a href="https://vote.cyol.com/xsxs1/uDetail/id/187" target="_blank">尚策</a>
+                    </div>
+                    <div class="advisor-title">辅导员</div>
+                    <div class="advisor-affiliation">厦门大学化学化工学院</div>
+                    <a href="https://vote.cyol.com/xsxs1/uDetail/id/187" target="_blank" class="advisor-link">查看详情 →</a>
                 </div>
             </div>
         </div>
